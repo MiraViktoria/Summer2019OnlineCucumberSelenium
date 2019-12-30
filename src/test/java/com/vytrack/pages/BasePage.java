@@ -137,4 +137,6 @@ public class BasePage {
         new WebDriverWait(Driver.get(), 10).until(ExpectedConditions.textToBe(By.cssSelector("h1[class='oro-subtitle']"), pageSubtitleText));
     }
 
+    public void login(String role) {
+    }
 }

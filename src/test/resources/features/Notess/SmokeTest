@@ -1,4 +1,3 @@
-package com.vytrack.step_definitions;
 /*
 warm-up task:
         Create feature file smoke test and come up with 3 Smoke Test Scenarios.
@@ -104,6 +103,4 @@ Feature: Smoke test
 //        }
 //        Take a screenshot, only if scenario fails.
 //        scenario.embed(screenshot, "image/png", "name of screenshot");
-
-
 

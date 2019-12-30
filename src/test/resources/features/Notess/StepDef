@@ -1,7 +1,4 @@
-package com.vytrack.step_definitions;
-
-public class Notes {
-    /*
+/*
     Today is 12/17/2019
     Agenda:
         BDD
@@ -269,4 +266,3 @@ Perform dry run and implement step definitions.
 Then set dryRun to false, and run tests indeed.
 
      */
-}
