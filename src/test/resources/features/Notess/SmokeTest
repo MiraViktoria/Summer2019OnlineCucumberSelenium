@@ -18,7 +18,8 @@ Feature: Smoke test
         Scenario: Verify Manage Dashboards page
         And user navigates to "Dashboards" then to "Manage Dashboards"
         Then user verifies that "All Manage Dashboards" page subtitle is displayed
-        Background - it's a precondition for every test scenario in one particular feature file. Instead of repeating same test steps for every scenario, we can put these steps into background.
+        Background - it's a precondition for every test scenario in one particular feature file.
+         Instead of repeating same test steps for every scenario, we can put these steps into background.
         Flow of execution:
         hook before --> background --> scenario --> hook after
         hook and background are completely optional.
@@ -38,7 +39,8 @@ Feature: Smoke test
         options.setHeadless(true);
         driver = new ChromeDriver(options);
         break;
-        Headless webdriver is much faster, because it doesn't display web page, tests are running in a background.
+        Headless webdriver is much faster, because it doesn't display web page, tests are running
+         in a background.
         Headless webdriver cannot upload files. This is a disadvantage of running tests in headless browser.
         You can still tale screenshots and do almost everything like with regular browser.
         Common issue in cucumber: step definitions with same name.
