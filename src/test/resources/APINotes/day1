@@ -1,0 +1,296 @@
+Today is 01/21/2020
+
+
+Agenda: Introduction to API and Web Services Testing
+
+https://www.google.com/search?source=hp&ei=kRwnXu6MD7KZ_QbVp6qgAg&q=java+book&oq=java+book&gs
+
+
+Protocol - it's a set of rules.
+
+http - Hypertext Transfer Protocol
+it's a set of rules for transferring files like text, video, audio, images.
+
+http it's a protocol that websites use to transfer information from server to client and client to server
+(from server to your browser)
+
+Like English, has some rules, HTTP also has some rules.
+
+
+api provides communication between 2 systems, components, services.
+
+web service talks not only to ui and data base, but also it can talk to other web services to retrieve some
+information. Like google api, is very commonly used to validate address. Even my company use google api.
+
+Request (I request user with id 12):
+
+http://myhr.com/api/user/12
+
+As a response you will get json file, like this.
+key=value, like a map.
+
+An Rest web services, they send information as JSON file.
+
+{
+"name": "John",
+"age": "45"
+"DOB": "01/01/1975"
+}
+
+JSON - javascript object notation.
+
+Web Service - program that works over the Internet and does something useful. This program/application can be
+ build on java/python/ruby/C#, etc...
+
+To be able to communicate with that application, we need some kind of API. And there are 2 main types of
+web services: rest and soap.
+
+About RESTful Web Services
+Representational State Transfer (REST) is a style of software architecture for distributed hypermedia systems
+ such as the World Wide Web. An API is described as RESTful when it conforms to the tenets of REST. Although a
+  full discussion of REST is outside the scope of this document, a RESTful API has the following characteristics:
+
+Data is modelled as a set of resources. Resources are identified by URIs.
+~A small, uniform set of operations are used to manipulate resources (for example, PUT, POST, GET, DELETE).
+~A resource can have multiple representations (for example, a blog might have a HTML representation and a RSS
+representation).
+~Services are stateless and since it is likely that the client will want to access related resources, these
+should be identified in the representation returned, typically by providing hypertext links.
+
+SOAP - Simple Simple Object Access Protocol
+
+Difference is huge. If Rest is more like architecture, means that it defines some conventions for building web
+services, wheres SOAP is a protocol itself (based on HTTP), message protocol.
+
+
+Rest web services use HTTP protocol for communication.
+
+HTTP protocol used everywhere, now days. Evry single website can be accessed over HTTP request. When you enter
+ some URL in the browser, you are actually performing HTTP GET request to the server. And then server, gives you
+ response back.
+
+HTTP is not secured, so data can be easily hacked. So that's why, some companies, like banks, use soap, since
+ it's more secured.
+
+HTTP vs HTTPS
+
+HTTPS is more secured version of HTTP. It's using SSL certificate, to encrypt information.
+
+FTP - file transfer protocol
+
+SMTP - Simple Mailing Transfer Protocol
+
+Another difference is that SOAP use only XML.
+Rest, can use JSON, XML, etc. But, 99% people use JSON only. Because JSON file is very light weight and easy
+ to parse. Majority of open source API's (like google, some news, weather, twiter, facebook, instagram, and many more)
+  use rest api.
+
+###to parse - means convert/transform information from one shape to another. Like Integer.parseInt("14") in java
+will convert string into integer.
+
+Also, it's more difficult to learn SOAP then rest. SOAP requires specific message structure.
+
+SOAP more secured, more stable, but more heavy. It requires more bandwidth to transfer soap message than rest.
+
+In SQL, we can perform CRUD operations:
+
+
+SELECT - to get data from data base
+INSERT - add new record
+UPDATE - update existing record
+DELETE - delete some record
+
+In, HTTP we can perform CRUD operations with:
+
+GET - get information from server
+PUT - update some record
+POST - add new record into application
+DELETE - delete some record
+
+Whenever we make request to the server, we need to tell what we want to do: delete, update, insert or get.
+
+Where you can find information about what you can do with web service?
+
+- usually, every application has API documentation.
+For example: swagger - tool that can automatically generate API documentation.
+API documentation has list of end points with type of requests.
+
+We are performing GET request to the api.zippopotam.us server.
+api.zippopotam.us = base URI
+/country/postal_code - end point
+/us/20001 -
+
+http://api.zippopotam.us/us/20001
+This is what we got as a response from the server.
+This resposne is in a form of JSON file
+{
+"post code": "20001",
+"country": "United States",
+"country abbreviation": "US",
+"places":
+[
+{"place name": "Washington",
+"longitude": "-77.0177",
+"state": "District of Columbia",
+"state abbreviation": "DC",
+"latitude": "38.9122"}]
+}
+
+
+
+
+Test case example:
+Example of BDD scenario for API testing.
+
+Scenario: Verify that place name for postal code 20740 is a College Park
+Given user performs "GET" request to "http://api.zippopotam.us/us/20740"
+Then user verifies that status code is "200"
+And user verifies that "place name" is "College Park"
+
+To do same thing like we did with Selenium + Cucumber, we gonna use Rest Assured library.
+
+Postman, SoapUI, CURL, Rest Assured (java), native java HTTP client - tools that you can use for API
+automation.
+
+Postman and SoapUI - mostly used for manual API testing.
+
+Status codes:
+
+CATEGORY	DESCRIPTION
+1xx: Informational	Communicates transfer protocol-level information.
+2xx: Success	Indicates that the client’s request was accepted successfully.
+3xx: Redirection	Indicates that the client must take some additional action in order to complete their request.
+4xx: Client Error	This category of error status codes points the finger at clients.
+5xx: Server Error	The server takes responsibility for these error status codes.
+
+HTTP status code describes how went your request. (
+
+200 Status Code (Links to an external site.)
+200: “Everything is OK.” This is the code that is delivered when a web page or resource acts exactly the way
+it’s expected to.
+300 Status  Codes (Links to an external site.)
+301: “The requested resource has been moved permanently.” This code is delivered when a web page or resource
+ has been permanently replaced with a different resource. It is used for permanent URL redirection (Links to an
+  external site.).
+302: “The requested resource has moved, but was found.” This code is used to indicate that the requested resource
+was found, just not at the location where it was expected. It is used for temporary URL redirection.
+304: “The requested resource has not been modified since the last time you accessed it.” This code tells the
+ browser that resources stored in the browser cache haven’t changed. It’s used to speed up web page delivery
+ by reusing previously downloaded resources.
+400 Status Codes (Links to an external site.)
+401: “Unauthorized” or “Authorization Required.” This is returned by the server when the target resource lacks
+ valid authentication credentials. You might see this if you’ve set up basic HTTP authentication using htpasswd
+  (Links to an external site.).
+403: “Access to that resource is forbidden.” This code is returned when a user attempts to access something that
+ they don’t have permission to access. For example, trying to view password-protected content without logging in
+  might produce a 403 error (Links to an external site.).
+404: “The requested resource was not found.” The most common error message of them all. This code means that the
+ requested resource does not exist (Links to an external site.) and that the server does not know if it ever existed.
+405: “Method not allowed (Links to an external site.).” This is generated when the hosting server (origin server)
+ supports the method received, but the target resource doesn’t.
+406: “Not acceptable response.” The requested resource is capable of generating only content not acceptable according
+to the Accept headers sent in the request.
+408: “The server timed out waiting for the rest of the request from the browser.” This code is generated when a
+ server times out while waiting for the complete request from the browser. In other words, the server didn’t get
+  the full request that was sent by the browser. One possible cause could be net congestion resulting in the loss
+  of data packets between the browser and server.
+410: “The requested resource is gone and won’t be coming back.” Similar to a 404 “Not Found” code, except a 410
+indicates that the condition is expected and permanent.
+429: “Too many requests.” Generated by the server when the user has sent too many requests in a given amount of
+ time (rate-limiting). This can sometimes occur from bots or scripts attempting to access your site. In this case,
+  you might want to try changing your WordPress login URL (Links to an external site.).
+499: “Client closed request.” This is returned by NGINX when the client closes the request while NGINX (Links to
+ an external site.) is still processing it.
+500 Status Codes (Links to an external site.)
+500: “There was an error on the server and the request could not be completed.” A generic code that simply means
+“internal server error”. Something went wrong on the server and the requested resource was not delivered.
+ This code is typically generated by third-party plugins, faulty PHP, or even the connection to the database
+ breaking. Check out our tutorials on how to fix the error establishing a database connection
+ (Links to an external site.) and other ways to resolve a 500 internal server error (Links to an external site.).
+501: “Not Implemented.” This error indicates that the server does not support the functionality required to fulfill
+ the request. This is almost always a problem on the web server itself and usually must be resolved by the host.
+ Check out our recommendations on how to resolve a 501 not implemented error (Links to an external site.).
+502: “Bad Gateway.” This error code typically means that one server has received an invalid response from another.
+ Sometimes a query or request will take too long and so it is canceled or killed by the server and the connection
+  to the database breaks. Check out our in-depth tutorial on how to fix the 502 Bad Gateway error
+  (Links to an external site.).
+503: “The server is unavailable to handle this request right now.” The request cannot be completed right now.
+ This code may be returned by an overloaded server that is unable to handle additional requests.
+  Check out our in-depth tutorial on how to fix the 503 Service Unavailable Error (Links to an external site.).
+504: “The server, acting as a gateway, timed out waiting for another server to respond.” The code returned when
+there are two servers involved in processing a request, and the first server times out waiting for the second
+server to respond. Read more about how to fix 504 errors (Links to an external site.).
+521: “Web server is down” Error 521 is a Cloudflare-specific error message (Links to an external site.).
+ It means that your web browser was able to successfully connect to Cloudflare, but Cloudflare was not able
+ to connect to the origin web server.
+API testing scenarios:
+valid request:
+body
+query params
+header
+authorization
+path parameters
+invalid request:
+body
+query params
+header
+authorization
+path parameters
+
+verify status codes
+
+
+http://api.zippopotam.us/us/20740?username=sdet&password=1234
+
+ORDS - restful web service that oracle provides for learning/practice purpose.
+
+http://ec2-34-201-69-55.compute-1.amazonaws.com:1000/ords/hr/employees
+
+http://YOUR_EC2_DNS/IP:1000/ords/hr/employees
+
+
+select * from employees;
+
+http://ec2-34-201-69-55.compute-1.amazonaws.com:1000/ords/hr/employees/100
+
+(web service source code)
+java controller
+
+@GetMapping("/ords/hr/employees/{id}")
+public Employee getEmployeeById(@PathParam id){
+
+return storage.geEmployee(id);
+
+}
+
+How about the username and the password for the DB? How was that disregarded?
+
+- web service can also ask for authentication. Means without username/password you won't be able to get any data.
+ In our case, this web service doesn't enforce authentication. Pretty much it's disabled.
+
+
+Scenario: Verify department id
+Given user sends "GET" request to "http://ec2-34-201-69-55.compute-1.amazonaws.com:1000/ords/hr/employees/100"
+Then user verifies status code is 200
+And user verifies that "department_id" is 90
+
+RESTful Services Terminology
+This section introduces some common terms that are used throughout this document:
+
+RESTful Service: A HTTP web service that conforms to the tenets of the RESTful Architectural Style, see
+ “About RESTful Web Services” above.
+Resource Module: An organizational unit that is used to group related Resource Templates together, similar
+in purpose to a PL/SQL package.
+Resource Template: An individual RESTful Service that is able to service requests for some set of URIs
+(Universal Resource Locators). The set of URIs is defined by the URI Template of the Resource Template.
+URI Template: A simple grammar that defines the particular patterns of URIs that a given Resource Template can
+handle, for example the template: images/{id} will match any URI whose path begins with images/ for example: images/101.
+Resource Handler: Provides the logic required to service a particular HTTP method, for a specific Resource Template.
+ For example the logic of the GET HTTP method for the above Resource Template might be: select content_type, contents
+ from images where id = :id.
+HTTP Operation: HTTP (HyperText Transport Protocol) defines a number of standard methods that can be performed
+on resources:
+GET: Retrieve the resource contents.
+POST: Store a new resource.
+PUT: Update an existing resource.
+DELETE: Remove a resource.
